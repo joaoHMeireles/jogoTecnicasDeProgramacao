@@ -1,0 +1,7 @@
+#pagina-inicial {
+    width: 70%;
+    height: 80%;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}
