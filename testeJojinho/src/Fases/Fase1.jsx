@@ -6,8 +6,24 @@ function Fase1(){
         <div id='fase-1'>
             <div className="background">
                 <div className="conteudo">
-                    <Link to='/' className='botao'>Menu</Link>
-
+                    <div to='/' className='info'>
+                        <Link to='/'>Menu</Link>
+                        <div className="vidas">
+                            barras de vida
+                        </div>
+                    </div>
+                    <div className='luta'>
+                        <div className="personagem">
+                            <div className="imagem-personagem">
+                                heroi
+                            </div>
+                        </div>
+                        <div className="personagem">
+                            <div className="imagem-personagem">
+                                vilao
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
