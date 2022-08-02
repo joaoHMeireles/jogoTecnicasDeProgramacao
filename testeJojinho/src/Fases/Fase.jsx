@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Fase.scss'
@@ -12,13 +13,19 @@ function Fase(props) {
         vida = 20
         mana = 6
     }
+
     const nomeInimigo = rato.nome
     const habilidadesVilao = rato.habilidades
     const habilidadesHeroi = props.habilidadesHeroi
-    const [vidaHeroi, setVidaHeroi] = useState(vida)
-    const [manaHeroi, setManaHeroi] = useState(mana)
-    const [vidaInimigo, setVidaInimigo] = useState(rato.vida)
+    const [vidaHeroi, setVidaHeroi] = useState()
+    const [manaHeroi, setManaHeroi] = useState()
     const [venceu, setVenceu] = useState(0)
+
+    useEffect(() => {
+        console.log("Aaaaaaaaaaaaaaaaaaaaaaaaa")
+        setManaHeroi(mana)
+        setVidaHeroi(vida)
+    }, [])
 
     const acoes = habilidadesHeroi.map((habilidade) => {
         return (
@@ -27,7 +34,7 @@ function Fase(props) {
     })
 
     function acaoHeroi(dano, mana) {
-        setVidaInimigo(vidaInimigo - dano)
+        rato.vida = rato.vida - dano
         if (mana == 0 && manaHeroi < 6) {
             setManaHeroi(manaHeroi + 1)
         } else {
@@ -51,7 +58,7 @@ function Fase(props) {
             alert("Não tem mana o suficiente")
         } else {
             acaoHeroi(dano, mana)
-            if (vidaInimigo - dano <= 0) {
+            if (rato.vida - dano <= 0) {
                 alert("Você derrotou o " + nomeInimigo)
                 setVenceu(1)
             } else {
@@ -78,7 +85,7 @@ function Fase(props) {
                         <Link to='/'>Menu</Link>
                         <div className="vidas">
                             <div className="barra-de-vida"> Vida Flaustista: {vidaHeroi}</div>
-                            <div className="barra-de-vida"> Vida {nomeInimigo}: {vidaInimigo}</div>
+                            <div className="barra-de-vida"> Vida {nomeInimigo}: {rato.vida}</div>
                         </div>
                         <div className="numeros">
                             <div className="caracteristica">
@@ -104,7 +111,7 @@ function Fase(props) {
                     {venceu == 1 &&
                     <div>
                         Você venceu
-                        <Link to={props.proximaFase}>Próxima fase</Link>
+                        <button><Link to={props.proximaFase}>Próxima fase</Link></button>
                     </div>}
                     {venceu == 2 && 
                     <div>
