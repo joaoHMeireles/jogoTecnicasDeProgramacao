@@ -1,9 +1,12 @@
 import './App.scss'
-import floresta from "./assets/background.png"
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import PaginaInicial from './PaginaInicial/PaginaInicial'
-import Fase from './Fases/Fase'
 import Ranking from './Ranking/Ranking'
+import Fase1 from './Fases/Fase1/Fase1'
+import Fase2 from './Fases/Fase2/Fase2'
+import Fase3 from './Fases/Fase3/Fase3'
+import Fase4 from './Fases/Fase4/Fase4'
+import { useState } from 'react'
 
 const habilidadesHeroi1 = [
   {
@@ -46,110 +49,20 @@ const habilidadesHeroi2 = [
     mana: 3
   }
 ]
-
-const ratoBebe = {
-  nome: "Rato Bebê",
-  vida: 8,
-  habilidades: [
-    {
-      id: 1,
-      nome: "Arranhar",
-      dano: 2,
-      mana: 0
-    }
-  ]
-}
-
-const ratao = {
-  nome: "Rato Atroz",
-  vida: 14,
-  habilidades: [
-    {
-      id: 1,
-      nome: "Arranhar",
-      dano: 2,
-      mana: 0
-    },
-    {
-      id: 2,
-      nome: "Morder",
-      dano: 5,
-      mana: 0
-    },
-  ]
-}
-
-const rataoDeArmadura = {
-  nome: "Rato Soldado",
-  vida: 18,
-  habilidades: [
-    {
-      id: 1,
-      nome: "Arranhar",
-      dano: 2,
-      mana: 0
-    },
-    {
-      id: 2,
-      nome: "Morder",
-      dano: 5,
-      mana: 0
-    },
-    {
-      id: 3,
-      nome: "Investida",
-      dano: 7,
-      mana: 0
-    }
-  ]
-}
-
-const rataoRei = {
-  nome: "Rato Rei",
-  vida: 20,
-  habilidades: [
-    {
-      id: 1,
-      nome: "Arranhar",
-      dano: 2,
-      mana: 0
-    },
-    {
-      id: 2,
-      nome: "Morder",
-      dano: 5,
-      mana: 0
-    },
-    {
-      id: 3,
-      nome: "Investida",
-      dano: 7,
-      mana: 0
-    },
-    {
-      id: 4,
-      nome: "Enforcamento",
-      dano: 9,
-      mana: 0
-    }
-  ]
-}
-
-const jogos = [{nome: "joj", pontuacao: 320},{nome: "bru", pontuacao: 140}, {nome: "cam", pontuacao: 530}]
-
 function App() {
+  const [nome, setNome] = useState("")
   return (
     <div className="App">
       <div className='Jojinho'>
         <BrowserRouter>
           <Routes>
-            <Route path='/' element={<PaginaInicial />} />
-            <Route path='/fase/1/1' element={<Fase inimigo={ratoBebe} habilidadesHeroi={habilidadesHeroi1} imagem={floresta} fase={1} proximaFase="/fase/1/2"/>} />
-            <Route path='/fase/1/2' element={<Fase inimigo={ratao} habilidadesHeroi={habilidadesHeroi1} imagem={floresta} fase={1} proximaFase="/fase/2/1"/>} />
-            <Route path='/fase/2/1' element={<Fase inimigo={rataoDeArmadura} habilidadesHeroi={habilidadesHeroi2} imagem={"cidade"} fase={2} proximaFase="/fase/2/2"/>} />
-            <Route path='/fase/2/2' element={<Fase inimigo={rataoRei} habilidadesHeroi={habilidadesHeroi2} imagem={"cidade"} fase={2} proximaFase="/acabou"/>} />
-            <Route path='/ranking' element={<Ranking lista={jogos}/>} />
-            <Route path='/acabou' element={<Ranking />} />
+            <Route path='/' element={<PaginaInicial nome={nome} setNome={setNome}/>} />
+            <Route path='/fase/1' element={<Fase1 habilidadesHeroi={habilidadesHeroi1}/>} />
+            <Route path='/fase/2' element={<Fase2 habilidadesHeroi={habilidadesHeroi1}/>} />
+            <Route path='/fase/3' element={<Fase3 habilidadesHeroi={habilidadesHeroi2}/>} />
+            <Route path='/fase/4' element={<Fase4 habilidadesHeroi={habilidadesHeroi2}/>} />
+            <Route path='/ranking' element={<Ranking />} />
+            <Route path='/venceu' element={<Ranking />} />
           </Routes>
         </BrowserRouter>
       </div>
