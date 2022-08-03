@@ -1,7 +1,8 @@
 import { useEffect } from 'react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import './Fase1.scss'
+import RatoBebe from '../../assets/RatoBebe.jpg'
+import '../Fases.scss'
 
 function Fase1(props) {
     const nomeInimigo = "Rato Bebê"
@@ -82,7 +83,7 @@ function Fase1(props) {
     }
 
     return (
-        <div id='fase-1'>
+        <div id='fase'>
             <div className="background">
                 <div className="conteudo">
                     <div to='/' className='info'>
@@ -109,6 +110,7 @@ function Fase1(props) {
                         <div className="personagem">
                             <div className="imagem-personagem">
                                 {nomeInimigo}
+                                <img src= {RatoBebe}/>
                             </div>
                         </div>
                     </div>

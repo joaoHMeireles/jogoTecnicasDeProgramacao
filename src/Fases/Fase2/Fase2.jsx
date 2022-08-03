@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import './Fase2.scss'
+import '../Fases.scss'
 
 function Fase2(props) {
     const nomeInimigo = "Rato Atroz"
@@ -88,7 +88,7 @@ function Fase2(props) {
     }
 
     return (
-        <div id='fase-1'>
+        <div id='fase'>
             <div className="background">
                 <div className="conteudo">
                     <div to='/' className='info'>
