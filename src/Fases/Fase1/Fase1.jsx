@@ -34,6 +34,7 @@ function Fase1(props) {
     })
 
     useEffect(() => {
+        preparativos()
         props.setJogador({nome: props.jogador.nome, pontuacao: 100})
     }, [])
 
@@ -89,8 +90,10 @@ function Fase1(props) {
         acoesTurno(dano, mana, nome)
     }
 
-    function tentarNovamente(){
-        document.location.reload()
+    function preparativos(){
+        setVidaHeroi(15)
+        setManaHeroi(4)
+        setVidaRato(8)
     }
 
     return (
@@ -132,7 +135,7 @@ function Fase1(props) {
                     {venceu == 2 && 
                     <div>
                         Você perdeu
-                        <button onClick={tentarNovamente}>Tentar novamente</button>
+                        <button onClick={preparativos}>Tentar novamente</button>
                         <button><Link to='/'>Voltar ao menu</Link></button>
                     </div>}
                 </div>
