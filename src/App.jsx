@@ -6,6 +6,7 @@ import Fase1 from './Fases/Fase1/Fase1'
 import Fase2 from './Fases/Fase2/Fase2'
 import Fase3 from './Fases/Fase3/Fase3'
 import Fase4 from './Fases/Fase4/Fase4'
+import Modal from './Modal/Modal'
 import { useState } from 'react'
 
 const habilidadesHeroi1 = [
@@ -50,6 +51,18 @@ const habilidadesHeroi2 = [
   }
 ]
 
+const lista = [
+  {
+    nome:"joj", pontuacao:350
+  },
+  {
+    nome:"bru", pontuacao:150
+  },
+  {
+    nome:"cam", pontuacao:550
+  }
+]
+
 function App() {
   const [nome, setNome] = useState("")
   return (
@@ -62,8 +75,9 @@ function App() {
             <Route path='/fase/2' element={<Fase2 habilidadesHeroi={habilidadesHeroi1}/>} />
             <Route path='/fase/3' element={<Fase3 habilidadesHeroi={habilidadesHeroi2}/>} />
             <Route path='/fase/4' element={<Fase4 habilidadesHeroi={habilidadesHeroi2}/>} />
-            <Route path='/ranking' element={<Ranking />} />
+            <Route path='/ranking' element={<Ranking lista={lista}/>} />
             <Route path='/venceu' element={<Ranking />} />
+            <Route path='/modal' element={<Modal venceu={1}/>}/>
           </Routes>
         </BrowserRouter>
       </div>

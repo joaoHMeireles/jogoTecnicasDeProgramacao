@@ -11,7 +11,7 @@ function Ranking(props) {
 
     const ranking = listaOrdenada.map((jogador) => {
         return (
-            <div >
+            <div className='linha'>
                 <div> NickName: {jogador.nome} </div>
                 <div> Pontuação: {jogador.pontuacao} </div>
             </div>
@@ -20,8 +20,10 @@ function Ranking(props) {
 
     return (
         <div id='ranking'>
-            <img className="img" src={rank}></img>
-            <div className='linha'>
+            <div className="imagem">
+                <img src={rank}></img>
+            </div>
+            <div className='rank'>
                 {ranking}
             </div>
             <Link to="/">Inicio</Link>
