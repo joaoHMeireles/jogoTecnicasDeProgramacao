@@ -1,0 +1,22 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+#ranking {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+
+    .img{
+        width: 35%;
+        height: auto;
+    }
+
+    .linha{
+        width: 35%;
+        display: flex;
+        justify-content: space-between;
+    }
+}

@@ -135,6 +135,8 @@ const rataoRei = {
   ]
 }
 
+const jogos = [{nome: "joj", pontuacao: 320},{nome: "bru", pontuacao: 140}, {nome: "cam", pontuacao: 530}]
+
 function App() {
   return (
     <div className="App">
@@ -146,7 +148,7 @@ function App() {
             <Route path='/fase/1/2' element={<Fase inimigo={ratao} habilidadesHeroi={habilidadesHeroi1} imagem={floresta} fase={1} proximaFase="/fase/2/1"/>} />
             <Route path='/fase/2/1' element={<Fase inimigo={rataoDeArmadura} habilidadesHeroi={habilidadesHeroi2} imagem={"cidade"} fase={2} proximaFase="/fase/2/2"/>} />
             <Route path='/fase/2/2' element={<Fase inimigo={rataoRei} habilidadesHeroi={habilidadesHeroi2} imagem={"cidade"} fase={2} proximaFase="/acabou"/>} />
-            <Route path='/ranking' element={<Ranking />} />
+            <Route path='/ranking' element={<Ranking lista={jogos}/>} />
             <Route path='/acabou' element={<Ranking />} />
           </Routes>
         </BrowserRouter>
