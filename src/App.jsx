@@ -49,6 +49,7 @@ const habilidadesHeroi2 = [
     mana: 3
   }
 ]
+
 function App() {
   const [nome, setNome] = useState("")
   return (
