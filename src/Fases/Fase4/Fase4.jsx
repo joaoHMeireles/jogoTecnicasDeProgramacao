@@ -41,7 +41,7 @@ function Fase4(props) {
         if(vidaRato> 0 && vidaHeroi > 0){
             setVenceu(0)
         }
-        if(vidaRato <= 0){
+        if(vidaRato <= 0 && venceu != 1){
             setVenceu(1)
             props.fimDeJogo(props.jogador)
         }
@@ -98,8 +98,9 @@ function Fase4(props) {
         } else {
             acaoHeroi(dano, mana, nome)
             props.setJogador({nome: props.jogador.nome, pontuacao: props.jogador.pontuacao - 4})
-            if (vidaRato <= 0) {
+            if (vidaRato - dano <= 0) {
                 alert("Você derrotou o " + nomeInimigo)
+                props.setJogador({nome: props.jogador.nome, pontuacao: props.jogador.pontuacao + 125})
             } else {
                 acaoInimigo(nome)
             }
@@ -146,7 +147,7 @@ function Fase4(props) {
                     </div>
                     {venceu == 1 &&
                     <div>
-                        <button><Link to='/venceu'>Você venceu!</Link></button>
+                        <button><Link to='/ranking'>Você venceu!</Link></button>
                     </div>}
                     {venceu == 2 && 
                     <div>
