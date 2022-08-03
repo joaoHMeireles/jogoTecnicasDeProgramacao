@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import Flautista from '../../assets/Flautista.jpg'
 import RatoBebe from '../../assets/RatoBebe.jpg'
 import '../Fases.scss'
 
@@ -119,7 +120,7 @@ function Fase1(props) {
                     <div className='luta'>
                         <div className="personagem">
                             <div className="imagem-personagem">
-                                Flautista
+                                <img id="heroi" src={Flautista}/>
                             </div>
                         </div>
                         <div className="personagem">
