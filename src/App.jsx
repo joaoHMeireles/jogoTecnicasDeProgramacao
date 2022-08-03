@@ -7,7 +7,7 @@ import Fase2 from './Fases/Fase2/Fase2'
 import Fase3 from './Fases/Fase3/Fase3'
 import Fase4 from './Fases/Fase4/Fase4'
 import Modal from './Modal/Modal'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const habilidadesHeroi1 = [
   {
@@ -64,17 +64,31 @@ const lista = [
 ]
 
 function App() {
-  const [nome, setNome] = useState("")
+  const [jogador, setJogador] = useState({nome: "", pontuacao: 0})
+
+  useEffect(() => {
+    setJogador({nome: "", pontuacao: 0})
+  }, [])
+
+  useEffect(() => {
+    console.log(jogador);
+  })
+
+  function adicionar(jogador){
+    console.log("app acabou");
+    lista.push(jogador)
+  }
+
   return (
     <div className="App">
       <div className='Jojinho'>
         <BrowserRouter>
           <Routes>
-            <Route path='/' element={<PaginaInicial nome={nome} setNome={setNome}/>} />
-            <Route path='/fase/1' element={<Fase1 habilidadesHeroi={habilidadesHeroi1}/>} />
-            <Route path='/fase/2' element={<Fase2 habilidadesHeroi={habilidadesHeroi1}/>} />
-            <Route path='/fase/3' element={<Fase3 habilidadesHeroi={habilidadesHeroi2}/>} />
-            <Route path='/fase/4' element={<Fase4 habilidadesHeroi={habilidadesHeroi2}/>} />
+            <Route path='/' element={<PaginaInicial jogador={jogador} setJogador={setJogador}/>} />
+            <Route path='/fase/1' element={<Fase1 habilidadesHeroi={habilidadesHeroi1} jogador={jogador} setJogador={setJogador} fimDeJogo={adicionar}/>} />
+            <Route path='/fase/2' element={<Fase2 habilidadesHeroi={habilidadesHeroi1} jogador={jogador} setJogador={setJogador} fimDeJogo={adicionar}/>} />
+            <Route path='/fase/3' element={<Fase3 habilidadesHeroi={habilidadesHeroi2} jogador={jogador} setJogador={setJogador} fimDeJogo={adicionar}/>} />
+            <Route path='/fase/4' element={<Fase4 habilidadesHeroi={habilidadesHeroi2} jogador={jogador} setJogador={setJogador} fimDeJogo={adicionar}/>} />
             <Route path='/ranking' element={<Ranking lista={lista}/>} />
             <Route path='/venceu' element={<Ranking />} />
             <Route path='/modal' element={<Modal venceu={1}/>}/>
