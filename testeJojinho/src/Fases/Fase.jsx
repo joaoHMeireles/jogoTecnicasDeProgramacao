@@ -5,6 +5,7 @@ import './Fase.scss'
 
 function Fase(props) {
     const rato = props.inimigo
+    let vidaInimigo = props.inimigo.vida
     let vida, mana
     if(props.fase == 1){
         vida = 15
@@ -17,15 +18,25 @@ function Fase(props) {
     const nomeInimigo = rato.nome
     const habilidadesVilao = rato.habilidades
     const habilidadesHeroi = props.habilidadesHeroi
-    const [vidaHeroi, setVidaHeroi] = useState()
-    const [manaHeroi, setManaHeroi] = useState()
+    const [vidaHeroi, setVidaHeroi] = useState(vida)
+    const [manaHeroi, setManaHeroi] = useState(mana)
     const [venceu, setVenceu] = useState(0)
 
     useEffect(() => {
-        console.log("Aaaaaaaaaaaaaaaaaaaaaaaaa")
-        setManaHeroi(mana)
-        setVidaHeroi(vida)
-    }, [])
+        if(rato.vida > 0 && vida > 0){
+            setVenceu(0)
+        }
+        if(rato.vida <= 0){
+            setVenceu(1)
+        }
+        if(vida <= 0){
+            setVenceu(2)
+        }
+        if (props.fase == 2 && rato.vida == 18){
+            setVidaHeroi(vida)
+            setManaHeroi(mana)
+        }
+    })
 
     const acoes = habilidadesHeroi.map((habilidade) => {
         return (
@@ -49,7 +60,6 @@ function Fase(props) {
         setVidaHeroi(vidaHeroi - habilidade.dano)
         if (vidaHeroi - habilidade.dano <= 0) {
             alert("Você perdeu!")
-            setVenceu(2)
         }
     }
 
@@ -58,9 +68,9 @@ function Fase(props) {
             alert("Não tem mana o suficiente")
         } else {
             acaoHeroi(dano, mana)
-            if (rato.vida - dano <= 0) {
+            console.log(rato.vida, " ", dano);
+            if (rato.vida <= 0) {
                 alert("Você derrotou o " + nomeInimigo)
-                setVenceu(1)
             } else {
                 acaoInimigo()
             }

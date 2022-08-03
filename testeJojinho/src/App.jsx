@@ -106,7 +106,7 @@ const rataoDeArmadura = {
 
 const rataoRei = {
   nome: "Rato Rei",
-  vida: 18,
+  vida: 20,
   habilidades: [
     {
       id: 1,
