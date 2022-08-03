@@ -43,16 +43,26 @@ function Fase4(props) {
         }
         if(vidaRato <= 0){
             setVenceu(1)
+            props.fimDeJogo(props.jogador)
         }
-        if(vidaHeroi <= 0){
+        if(vidaHeroi <= 0 && venceu != 2){
             setVenceu(2)
+            console.log("fase 4 perdeu");
+            props.fimDeJogo(props.jogador)
         }
     })
 
+    useEffect(() => {
+        props.setJogador({nome: props.jogador.nome, pontuacao: props.jogador.pontuacao + 100})
+    }, [])
+
     const acoes = habilidadesHeroi.map((habilidade) => {
         return (
-            <button key={habilidade.id} onClick={turno} dano={habilidade.dano} mana={habilidade.mana} nome={habilidade.nome}>{habilidade.nome} {habilidade.dano}</button>
-        )
+            <button key={habilidade.id} onClick={turno} dano={habilidade.dano} mana={habilidade.mana} nome={habilidade.nome}>
+                {habilidade.nome}
+                Valor: {habilidade.dano} 
+                Mana: {habilidade.mana} 
+            </button>        )
     })
 
     function acaoHeroi(dano, mana, nome) {
@@ -87,6 +97,7 @@ function Fase4(props) {
             alert("Não tem mana o suficiente")
         } else {
             acaoHeroi(dano, mana, nome)
+            props.setJogador({nome: props.jogador.nome, pontuacao: props.jogador.pontuacao - 4})
             if (vidaRato <= 0) {
                 alert("Você derrotou o " + nomeInimigo)
             } else {
@@ -100,10 +111,6 @@ function Fase4(props) {
         let mana = e.target.attributes[1].value
         let nome = e.target.attributes[2].value
         acoesTurno(dano, mana, nome)
-    }
-
-    function tentarNovamente(){
-        document.location.reload()
     }
 
     return (
@@ -144,7 +151,7 @@ function Fase4(props) {
                     {venceu == 2 && 
                     <div>
                         Você perdeu
-                        <button onClick={tentarNovamente}>Tentar novamente</button>
+                        <button><Link to='/fase/1'>Tentar novamente</Link></button>
                         <button><Link to='/'>Voltar ao menu</Link></button>
                     </div>}
                 </div>
