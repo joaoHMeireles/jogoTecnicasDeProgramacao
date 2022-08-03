@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import './Fase3.scss'
+import '../Fases.scss'
 
 function Fase3(props) {
     const nomeInimigo = "Rato Soldado"
@@ -35,7 +35,7 @@ function Fase3(props) {
         if(vidaRato> 0 && vidaHeroi > 0){
             setVenceu(0)
         }
-        if(vidaRato <= 0){
+        if(vidaRato <= 0 && venceu != 1){
             setVenceu(1)
         }
         if(vidaHeroi <= 0 && venceu != 2){
@@ -93,6 +93,7 @@ function Fase3(props) {
             props.setJogador({nome: props.jogador.nome, pontuacao: props.jogador.pontuacao - 6})
             if (vidaRato - dano <= 0) {
                 alert("Você derrotou o " + nomeInimigo)
+                props.setJogador({nome: props.jogador.nome, pontuacao: props.jogador.pontuacao + 60})
             } else {
                 acaoInimigo(nome)
             }
@@ -107,7 +108,7 @@ function Fase3(props) {
     }
     
     return (
-        <div id='fase-1'>
+        <div id='fase'>
             <div className="background">
                 <div className="conteudo">
                     <div to='/' className='info'>

@@ -67,10 +67,6 @@ function App() {
   const [jogador, setJogador] = useState({nome: "", pontuacao: 0})
 
   useEffect(() => {
-    setJogador({nome: "", pontuacao: 0})
-  }, [])
-
-  useEffect(() => {
     console.log(jogador);
   })
 
