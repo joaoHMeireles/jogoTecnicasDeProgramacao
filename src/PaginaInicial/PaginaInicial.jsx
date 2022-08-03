@@ -1,7 +1,12 @@
 import {Link} from 'react-router-dom'
+import { useEffect} from 'react'
 import './PaginaInicial.scss'
 
 function PaginaInicial(props){
+
+    useEffect(() => {
+        props.setJogador({nome: "", pontuacao: 0})
+      }, [])
 
     function comecarJogo(){
         props.setJogador({nome: props.jogador.nome,pontuacao: 0})
