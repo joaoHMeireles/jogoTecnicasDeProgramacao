@@ -124,7 +124,6 @@ function Fase1(props) {
                         </div>
                         <div className="personagem">
                             <div className="imagem-personagem">
-                                {nomeInimigo}
                                 <img src= {RatoBebe}/>
                             </div>
                         </div>

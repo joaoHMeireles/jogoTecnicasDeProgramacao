@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import Ratao from '../../assets/Ratao.jpg'
 import '../Fases.scss'
 
 function Fase2(props) {
@@ -121,7 +122,7 @@ function Fase2(props) {
                         </div>
                         <div className="personagem">
                             <div className="imagem-personagem">
-                                {nomeInimigo}
+                                <img src={Ratao}/>
                             </div>
                         </div>
                     </div>
