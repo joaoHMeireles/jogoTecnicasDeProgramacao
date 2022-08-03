@@ -86,7 +86,6 @@ function App() {
             <Route path='/fase/3' element={<Fase3 habilidadesHeroi={habilidadesHeroi2} jogador={jogador} setJogador={setJogador} fimDeJogo={adicionar}/>} />
             <Route path='/fase/4' element={<Fase4 habilidadesHeroi={habilidadesHeroi2} jogador={jogador} setJogador={setJogador} fimDeJogo={adicionar}/>} />
             <Route path='/ranking' element={<Ranking lista={lista}/>} />
-            <Route path='/venceu' element={<Ranking />} />
             <Route path='/modal' element={<Modal venceu={1}/>}/>
           </Routes>
         </BrowserRouter>
