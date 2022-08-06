@@ -65,7 +65,7 @@ const habilidadesHeroi2 = [
 
 
 function App() {
-  const lista = JSON.parse(localStorage.getItem("RANKING"))
+  let lista = JSON.parse(localStorage.getItem("RANKING"))
   const [jogador, setJogador] = useState(JSON.parse(localStorage.getItem("JOGADOR")))
 
   useEffect(() => {
@@ -78,7 +78,9 @@ function App() {
   })
 
   function adicionar(jogador){
-    console.log("app acabou");
+    if(lista == null){
+      lista = []
+    }
     lista.push(jogador)
     localStorage.setItem("RANKING", JSON.stringify(lista))
   }

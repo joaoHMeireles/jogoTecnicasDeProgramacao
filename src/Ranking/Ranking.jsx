@@ -4,6 +4,7 @@ import rank from '../assets/rank.jpg';
 
 function Ranking(props) {
     const lista = props.lista;
+    console.log(lista);
 
     const listaOrdenada = lista.sort(function (a, b) {
         return b.pontuacao - a.pontuacao;

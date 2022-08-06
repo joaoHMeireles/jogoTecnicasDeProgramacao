@@ -39,11 +39,9 @@ function Fase1(props) {
 
     useEffect(() => {
         preparativos()
-        console.log("aaaaa");
         localStorage.setItem("PONTUACAOATUAL", 100)
-        let valorInicial = localStorage.getItem("PONTUACAOATUAL");
+        let valorInicial = Number.parseInt(localStorage.getItem("PONTUACAOATUAL"));
         props.setJogador({nome: props.jogador.nome, pontuacao: valorInicial})
-        console.log(props.jogador);
         localStorage.setItem("JOGADOR", JSON.stringify(props.jogador))
     }, [])
 
