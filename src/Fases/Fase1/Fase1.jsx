@@ -7,6 +7,7 @@ import '../Fases.scss'
 
 function Fase1(props) {
     const nomeInimigo = "Rato Bebê"
+    const nomePessoa = props.jogador.nome
     const habilidadesVilao =  [
         {
           id: 1,
@@ -26,6 +27,7 @@ function Fase1(props) {
             setVenceu(0)
         }
         if(vidaRato <= 0 && venceu != 1){
+            localStorage.setItem("PONTUACAOATUAL", props.jogador.pontuacao)
             setVenceu(1)
         }
         if(vidaHeroi <= 0 && venceu != 2){
@@ -37,7 +39,12 @@ function Fase1(props) {
 
     useEffect(() => {
         preparativos()
-        props.setJogador({nome: props.jogador.nome, pontuacao: 100})
+        console.log("aaaaa");
+        localStorage.setItem("PONTUACAOATUAL", 100)
+        let valorInicial = localStorage.getItem("PONTUACAOATUAL");
+        props.setJogador({nome: props.jogador.nome, pontuacao: valorInicial})
+        console.log(props.jogador);
+        localStorage.setItem("JOGADOR", JSON.stringify(props.jogador))
     }, [])
 
     const acoes = habilidadesHeroi.map((habilidade) => {
@@ -50,23 +57,31 @@ function Fase1(props) {
         )
     })
 
-    function acaoHeroi(dano, mana, nome) {
-        alert("Você usou "+ nome + ", dando " + dano + " de dano")
-        setVidaRato(vidaRato - dano)
-        if (mana == 0 && manaHeroi < 6) {
+    function acaoHeroi(dano, mana, nomeHabilidade) {
+        if(nomeHabilidade != "Esquivar"){
+            alert(nomePessoa + " usou "+ nomeHabilidade + ", dando " + dano + " de dano!")
+            setVidaRato(vidaRato - dano)
+        } else {
+            alert(nomePessoa + " usou "+ nomeHabilidade + "!")
+        }
+        if (mana == 0 && manaHeroi < 4) {
             setManaHeroi(manaHeroi + 1)
         } else {
             setManaHeroi(manaHeroi - mana)
         }
     }
 
-    function acaoInimigo() {
+    function acaoInimigo(nome) {
         let escolha = Math.floor(Math.random() * habilidadesVilao.length);
         let habilidade = habilidadesVilao[escolha]
-        setInterval(alert(`O inimigo usou ${habilidade.nome}, dando ${habilidade.dano} de dano`), 2000)
-        setVidaHeroi(vidaHeroi - habilidade.dano)
-        if (vidaHeroi - habilidade.dano <= 0) {
-            alert("Você perdeu!")
+        if(nome == "Esquivar"){
+            alert(`O inimigo usou ${habilidade.nome}, mas você esquivou!`)
+        } else {
+            alert(`O inimigo usou ${habilidade.nome}, dando ${habilidade.dano} de dano!`)
+            setVidaHeroi(vidaHeroi - habilidade.dano)
+            if (vidaHeroi - habilidade.dano <= 0) {
+                alert("Você perdeu!")
+            }
         }
     }
 
@@ -80,8 +95,7 @@ function Fase1(props) {
                 alert("Você derrotou o " + nomeInimigo)
                 props.setJogador({nome: props.jogador.nome, pontuacao: props.jogador.pontuacao + 25})
             } else {
-                acaoInimigo()
-                
+                acaoInimigo(nome)
             }
         }
     }

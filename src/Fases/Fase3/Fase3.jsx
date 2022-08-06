@@ -6,6 +6,7 @@ import '../Fases.scss'
 
 function Fase3(props) {
     const nomeInimigo = "Rato Soldado"
+    const nomePessoa = props.jogador.nome
     const habilidadesVilao =  [
         {
             id: 1,

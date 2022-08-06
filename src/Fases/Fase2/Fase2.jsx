@@ -6,6 +6,7 @@ import '../Fases.scss'
 
 function Fase2(props) {
     const nomeInimigo = "Rato Atroz"
+    const nomePessoa = props.jogador.nome
     const habilidadesVilao =  [
         {
             id: 1,
@@ -54,23 +55,31 @@ function Fase2(props) {
             </button>        )
     })
 
-    function acaoHeroi(dano, mana, nome) {
-        alert("Você usou "+ nome + ", dando " + dano + " de dano")
-        setVidaRato(vidaRato - dano)
-        if (mana == 0 && manaHeroi < 6) {
+    function acaoHeroi(dano, mana, nomeHabilidade) {
+        if(nomeHabilidade != "Esquivar"){
+            alert(nomePessoa + " usou "+ nomeHabilidade + ", dando " + dano + " de dano!")
+            setVidaRato(vidaRato - dano)
+        } else {
+            alert(nomePessoa + " usou "+ nomeHabilidade + "!")
+        }
+        if (mana == 0 && manaHeroi < 4) {
             setManaHeroi(manaHeroi + 1)
         } else {
             setManaHeroi(manaHeroi - mana)
         }
     }
 
-    function acaoInimigo() {
+    function acaoInimigo(nome) {
         let escolha = Math.floor(Math.random() * habilidadesVilao.length);
         let habilidade = habilidadesVilao[escolha]
-        setInterval(alert(`O inimigo usou ${habilidade.nome}, dando ${habilidade.dano} de dano`), 2000)
-        setVidaHeroi(vidaHeroi - habilidade.dano)
-        if (vidaHeroi - habilidade.dano <= 0) {
-            alert("Você perdeu!")
+        if(nome == "Esquivar"){
+            alert(`O inimigo usou ${habilidade.nome}, mas você esquivou!`)
+        } else {
+            alert(`O inimigo usou ${habilidade.nome}, dando ${habilidade.dano} de dano!`)
+            setVidaHeroi(vidaHeroi - habilidade.dano)
+            if (vidaHeroi - habilidade.dano <= 0) {
+                alert("Você perdeu!")
+            }
         }
     }
 
@@ -84,7 +93,7 @@ function Fase2(props) {
                 alert("Você derrotou o " + nomeInimigo)
                 props.setJogador({nome: props.jogador.nome, pontuacao: props.jogador.pontuacao + 40})
             } else {
-                acaoInimigo()
+                acaoInimigo(nome)
             }
         }
     }

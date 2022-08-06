@@ -21,6 +21,12 @@ const habilidadesHeroi1 = [
     nome: "Som estridente",
     dano: 6,
     mana: 1
+  },
+  {
+    id: 3,
+    nome: "Esquivar",
+    dano: 0,
+    mana: 0
   }
 ]
 
@@ -39,40 +45,42 @@ const habilidadesHeroi2 = [
   },
   {
     id: 3,
+    nome: "Esquivar",
+    dano: 0,
+    mana: 0
+  },
+  {
+    id: 4,
     nome: "Melodia do inferno",
     dano: 9,
     mana: 2
   },
   {
-    id: 4,
+    id: 5,
     nome: "Curar",
     dano: 2,
     mana: 3
   }
 ]
 
-const lista = [
-  {
-    nome:"joj", pontuacao:350
-  },
-  {
-    nome:"bru", pontuacao:150
-  },
-  {
-    nome:"cam", pontuacao:550
-  }
-]
 
 function App() {
-  const [jogador, setJogador] = useState({nome: "", pontuacao: 0})
+  const lista = JSON.parse(localStorage.getItem("RANKING"))
+  const [jogador, setJogador] = useState(JSON.parse(localStorage.getItem("JOGADOR")))
 
   useEffect(() => {
+   // setJogador(JSON.parse(localStorage.getItem("JOGADOR")))
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem("JOGADOR", JSON.stringify(jogador))
     console.log(jogador);
   })
 
   function adicionar(jogador){
     console.log("app acabou");
     lista.push(jogador)
+    localStorage.setItem("RANKING", JSON.stringify(lista))
   }
 
   return (
@@ -80,7 +88,7 @@ function App() {
       <div className='Jojinho'>
         <BrowserRouter>
           <Routes>
-            <Route path='/' element={<PaginaInicial jogador={jogador} setJogador={setJogador}/>} />
+            <Route path='/' element={<PaginaInicial setJogador={setJogador}/>} />
             <Route path='/fase/1' element={<Fase1 habilidadesHeroi={habilidadesHeroi1} jogador={jogador} setJogador={setJogador} fimDeJogo={adicionar}/>} />
             <Route path='/fase/2' element={<Fase2 habilidadesHeroi={habilidadesHeroi1} jogador={jogador} setJogador={setJogador} fimDeJogo={adicionar}/>} />
             <Route path='/fase/3' element={<Fase3 habilidadesHeroi={habilidadesHeroi2} jogador={jogador} setJogador={setJogador} fimDeJogo={adicionar}/>} />
