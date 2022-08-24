@@ -8,14 +8,14 @@ import '../Fases.scss'
 function Fase1(props) {
     const nomeInimigo = "Rato Bebê"
     const nomePessoa = props.jogador.nome
-    const habilidadesVilao =  [
+    const habilidadesVilao = [
         {
-          id: 1,
-          nome: "Arranhar",
-          dano: 2,
-          mana: 0
+            id: 1,
+            nome: "Arranhar",
+            dano: 2,
+            mana: 0
         }
-      ]
+    ]
     const habilidadesHeroi = props.habilidadesHeroi
     const [vidaRato, setVidaRato] = useState(8)
     const [vidaHeroi, setVidaHeroi] = useState(15)
@@ -23,14 +23,14 @@ function Fase1(props) {
     const [venceu, setVenceu] = useState(0)
 
     useEffect(() => {
-        if(vidaRato> 0 && vidaHeroi > 0){
+        if (vidaRato > 0 && vidaHeroi > 0) {
             setVenceu(0)
         }
-        if(vidaRato <= 0 && venceu != 1){
+        if (vidaRato <= 0 && venceu != 1) {
             localStorage.setItem("PONTUACAOATUAL", props.jogador.pontuacao)
             setVenceu(1)
         }
-        if(vidaHeroi <= 0 && venceu != 2){
+        if (vidaHeroi <= 0 && venceu != 2) {
             setVenceu(2)
             console.log("fase 1 perdeu");
             props.fimDeJogo(props.jogador)
@@ -41,7 +41,7 @@ function Fase1(props) {
         preparativos()
         localStorage.setItem("PONTUACAOATUAL", 100)
         let valorInicial = Number.parseInt(localStorage.getItem("PONTUACAOATUAL"));
-        props.setJogador({nome: props.jogador.nome, pontuacao: valorInicial})
+        props.setJogador({ nome: props.jogador.nome, pontuacao: valorInicial })
         localStorage.setItem("JOGADOR", JSON.stringify(props.jogador))
     }, [])
 
@@ -49,18 +49,18 @@ function Fase1(props) {
         return (
             <button key={habilidade.id} onClick={turno} dano={habilidade.dano} mana={habilidade.mana} nome={habilidade.nome}>
                 {habilidade.nome}
-                Valor: {habilidade.dano} 
-                Mana: {habilidade.mana} 
+                Valor: {habilidade.dano}
+                Mana: {habilidade.mana}
             </button>
         )
     })
 
     function acaoHeroi(dano, mana, nomeHabilidade) {
-        if(nomeHabilidade != "Esquivar"){
-            alert(nomePessoa + " usou "+ nomeHabilidade + ", dando " + dano + " de dano!")
+        if (nomeHabilidade != "Esquivar") {
+            alert(nomePessoa + " usou " + nomeHabilidade + ", dando " + dano + " de dano!")
             setVidaRato(vidaRato - dano)
         } else {
-            alert(nomePessoa + " usou "+ nomeHabilidade + "!")
+            alert(nomePessoa + " usou " + nomeHabilidade + "!")
         }
         if (mana == 0 && manaHeroi < 4) {
             setManaHeroi(manaHeroi + 1)
@@ -72,7 +72,7 @@ function Fase1(props) {
     function acaoInimigo(nome) {
         let escolha = Math.floor(Math.random() * habilidadesVilao.length);
         let habilidade = habilidadesVilao[escolha]
-        if(nome == "Esquivar"){
+        if (nome == "Esquivar") {
             alert(`O inimigo usou ${habilidade.nome}, mas você esquivou!`)
         } else {
             alert(`O inimigo usou ${habilidade.nome}, dando ${habilidade.dano} de dano!`)
@@ -88,10 +88,10 @@ function Fase1(props) {
             alert("Não tem mana o suficiente")
         } else {
             acaoHeroi(dano, mana, nome)
-            props.setJogador({nome: props.jogador.nome, pontuacao: props.jogador.pontuacao - 10})
+            props.setJogador({ nome: props.jogador.nome, pontuacao: props.jogador.pontuacao - 10 })
             if (vidaRato - dano <= 0) {
                 alert("Você derrotou o " + nomeInimigo)
-                props.setJogador({nome: props.jogador.nome, pontuacao: props.jogador.pontuacao + 25})
+                props.setJogador({ nome: props.jogador.nome, pontuacao: props.jogador.pontuacao + 25 })
             } else {
                 acaoInimigo(nome)
             }
@@ -105,7 +105,7 @@ function Fase1(props) {
         acoesTurno(dano, mana, nome)
     }
 
-    function preparativos(){
+    function preparativos() {
         setVidaHeroi(15)
         setManaHeroi(4)
         setVidaRato(8)
@@ -115,6 +115,18 @@ function Fase1(props) {
         <div id='fase'>
             <div className="background">
                 <div className="conteudo">
+                    <div className='luta'>
+                        <div className="personagem">
+                            <div className="imagem-personagem">
+                                <img id="heroi" src={Flautista} />
+                            </div>
+                        </div>
+                        <div className="personagem">
+                            <div className="imagem-personagem">
+                                <img src={RatoBebe} />
+                            </div>
+                        </div>
+                    </div>
                     <div to='/' className='info'>
                         <Link to='/'>Menu</Link>
                         <div className="vidas">
@@ -129,30 +141,18 @@ function Fase1(props) {
                         <div className="acoes">
                             {acoes}
                         </div>
+                        {venceu == 1 &&
+                            <div>
+                                Você venceu
+                                <button><Link to='/fase/2'>Próxima fase</Link></button>
+                            </div>}
+                        {venceu == 2 &&
+                            <div>
+                                Você perdeu
+                                <button onClick={preparativos}>Tentar novamente</button>
+                                <button><Link to='/'>Voltar ao menu</Link></button>
+                            </div>}
                     </div>
-                    <div className='luta'>
-                        <div className="personagem">
-                            <div className="imagem-personagem">
-                                <img id="heroi" src={Flautista}/>
-                            </div>
-                        </div>
-                        <div className="personagem">
-                            <div className="imagem-personagem">
-                                <img src= {RatoBebe}/>
-                            </div>
-                        </div>
-                    </div>
-                    {venceu == 1 &&
-                    <div>
-                        Você venceu
-                        <button><Link to='/fase/2'>Próxima fase</Link></button>
-                    </div>}
-                    {venceu == 2 && 
-                    <div>
-                        Você perdeu
-                        <button onClick={preparativos}>Tentar novamente</button>
-                        <button><Link to='/'>Voltar ao menu</Link></button>
-                    </div>}
                 </div>
             </div>
         </div>

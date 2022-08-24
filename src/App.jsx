@@ -69,12 +69,7 @@ function App() {
   const [jogador, setJogador] = useState(JSON.parse(localStorage.getItem("JOGADOR")))
 
   useEffect(() => {
-   // setJogador(JSON.parse(localStorage.getItem("JOGADOR")))
-  }, [])
-
-  useEffect(() => {
     localStorage.setItem("JOGADOR", JSON.stringify(jogador))
-    console.log(jogador);
   })
 
   function adicionar(jogador){
