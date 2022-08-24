@@ -1,8 +1,10 @@
-import { useEffect } from 'react'
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import Ratao from '../../assets/Ratao.jpg'
-import '../Fases.scss'
+import '../Fases.scss';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import flautista from '../../assets/flautista.png';
+import ratao from '../../assets/ratao.png';
+import floresta from '../../assets/floresta.png';
 
 function Fase2(props) {
     const nomeInimigo = "Rato Atroz"
@@ -109,18 +111,24 @@ function Fase2(props) {
         <div id='fase'>
             <div className="background">
                 <div className="conteudo">
+                <div className="background-luta">
+                        <img src={floresta} />
+                    </div>
+
                     <div className='luta'>
                         <div className="personagem">
                             <div className="imagem-personagem">
-                                Flautista
+                                <img src={flautista} alt="Flautista" />
                             </div>
                         </div>
+
                         <div className="personagem">
                             <div className="imagem-personagem">
-                                <img src={Ratao} />
+                                <img src={ratao} alt="Rato Bebê" />
                             </div>
                         </div>
                     </div>
+
                     <div to='/' className='info'>
                         <Link to='/'>Menu</Link>
                         <div className="vidas">
