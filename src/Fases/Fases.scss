@@ -12,44 +12,26 @@
             display: flex;
             flex-direction: column;
 
-            .info {
-                padding: 20px;
-                height: 35%;
-                padding: 10px;
-                background-color: gold;
-                border: 1px rgb(165, 87, 42) solid;
+            .background-luta {
+                width: auto;
+                height: 70%;
+                display: flex;
+                justify-content: center;
+                align-items: flex-end;
+                overflow: hidden;
+                position: relative;
 
-                .vidas{
-                    display: flex;
-                    justify-content: space-between;
-                }
-
-                .acoes{
-                    display: flex;
-                    flex-direction: column;
+                img {
+                    width: 100%;
+                    height: auto;
                 }
             }
 
             .luta {
-                height: 65%;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                background-image: url("../assets/floresta.png");
-                background-repeat: no-repeat;
-                background-attachment: fixed;
-                background-position: 50% -37%; 
-            }
-
-            .luta-2 {
-                height: 65%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                background-image: url("../assets/esgoto.png");
-                background-repeat: no-repeat;
-                background-attachment: fixed;
-                background-position: 50% 320%; 
+                position: absolute;
             }
 
             .personagem {
@@ -75,6 +57,24 @@
                         width: 80%;
                         height: 100%;
                     }
+                }
+            }
+
+            .info {
+                padding: 20px;
+                height: 30%;
+                padding: 10px;
+                background-color: gold;
+                border: 1px rgb(165, 87, 42) solid;
+
+                .vidas{
+                    display: flex;
+                    justify-content: space-between;
+                }
+
+                .acoes{
+                    display: flex;
+                    flex-direction: column;
                 }
             }
         }
