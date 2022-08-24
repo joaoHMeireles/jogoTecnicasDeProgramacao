@@ -28,7 +28,7 @@ function Fase3(props) {
         }
     ]
     const habilidadesHeroi = props.habilidadesHeroi
-    const [vidaRato, setVidaRato] = useState(18)
+    const [vidaRato, setVidaRato] = useState(19)
     const [vidaHeroi, setVidaHeroi] = useState(20)
     const [manaHeroi, setManaHeroi] = useState(6)
     const [venceu, setVenceu] = useState(0)
@@ -61,12 +61,15 @@ function Fase3(props) {
     })
 
     function acaoHeroi(dano, mana, nome) {
-        if (nome != "Curar") {
+        if (nome != "Curar" && nome != "Esquivar") {
             alert("Você usou " + nome + ", dando " + dano + " de dano")
             setVidaRato(vidaRato - dano)
-        } else {
+        } else if (nome == "Curar") {
             alert("Você usou " + nome + ", recuperou 2 de vida")
+        } else {
+            alert(nomePessoa + " usou " + nomeHabilidade + "!")
         }
+
         if (mana == 0 && manaHeroi < 6) {
             setManaHeroi(manaHeroi + 1)
         } else {
@@ -77,13 +80,17 @@ function Fase3(props) {
     function acaoInimigo(nome) {
         let escolha = Math.floor(Math.random() * habilidadesVilao.length);
         let habilidade = habilidadesVilao[escolha]
-        setInterval(alert(`O inimigo usou ${habilidade.nome}, dando ${habilidade.dano} de dano`), 2000)
-        if (nome == "Curar") {
-            habilidade.dano = habilidade.dano - 2
-        }
-        setVidaHeroi(vidaHeroi - habilidade.dano)
-        if (vidaHeroi - habilidade.dano <= 0) {
-            alert("Você perdeu!")
+        if (nome == "Esquivar") {
+            alert(`O inimigo usou ${habilidade.nome}, mas você esquivou!`)
+        } else {
+            alert(`O inimigo usou ${habilidade.nome}, dando ${habilidade.dano} de dano!`)
+            if (nome == "Curar") {
+                habilidade.dano = habilidade.dano - 2
+            }
+            setVidaHeroi(vidaHeroi - habilidade.dano)
+            if (vidaHeroi - habilidade.dano <= 0) {
+                alert("Você perdeu!")
+            }
         }
     }
 
@@ -113,7 +120,7 @@ function Fase3(props) {
         <div id='fase'>
             <div className="background">
                 <div className="conteudo">
-                    <div className='luta'>
+                    <div className='luta-2'>
                         <div className="personagem">
                             <div className="imagem-personagem">
                                 Flautista
