@@ -1,22 +1,32 @@
 import { Link } from 'react-router-dom';
 import './Ranking.scss';
 import rank from '../assets/rank.jpg';
+import { useState } from 'react';
 
 function Ranking() {
     const lista = JSON.parse(localStorage.getItem("RANKING"))
+    let listaOrdenada
+    let ranking
+    let naoTem = false
 
-    const listaOrdenada = lista.sort(function (a, b) {
-        return b.pontuacao - a.pontuacao;
-    });
+    if (!lista) {
+        naoTem = true
+    } else {
+        listaOrdenada = lista?.sort(function (a, b) {
+            return b.pontuacao - a.pontuacao;
+        });
 
-    const ranking = listaOrdenada.map((jogador) => {
-        return (
-            <tr className='linha'>
-                <td> {jogador.nome} </td>
-                <td> {jogador.pontuacao} </td>
-            </tr>
-        )
-    })
+        ranking = listaOrdenada.map((jogador) => {
+            return (
+                <tr className='linha'>
+                    <td> {jogador.nome} </td>
+                    <td> {jogador.pontuacao} </td>
+                </tr>
+            )
+        })
+
+    }
+
 
     return (
         <div id='ranking'>
@@ -29,11 +39,12 @@ function Ranking() {
                         <th>NickName</th>
                         <th>Pontuação</th>
                     </tr>
-                    {ranking}
+                    {!naoTem &&
+                        { ranking }}
                 </table>
 
             </div>
-            <Link to="/">Inicio</Link>
+            <div id='botao'><Link to="/">Início</Link></div>
         </div>
     )
 }

@@ -24,7 +24,7 @@ function PaginaInicial(props) {
             <div id='input'>
                 <p>Informe seu usuário: </p>
                 <input id='nome' placeholder='Usuário' onChange={mudar} type='text' value={jogador.nome}></input>
-                {jogador.nome.length != 0 && <Link onClick={comecarJogo} to="fase/1">Começar novo jogo</Link>}
+                {jogador.nome.length != 0 && <div id='botao-2'><Link to="fase/1">INICIAR JOGO</Link></div>}
             </div>
             <div id='botao'><Link to="ranking">Ver Ranking</Link></div>
 

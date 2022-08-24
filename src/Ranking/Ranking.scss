@@ -70,4 +70,22 @@
             }
         }
     }
+
+    #botao {
+        margin-top: 10px;
+        padding: 2.5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 15%;
+        height: 30%;
+        border-radius: 5px;
+        background-color: blue;
+
+        a {
+            color: #ffff;
+            text-decoration: none;
+            outline: none;
+        }
+    }
 }

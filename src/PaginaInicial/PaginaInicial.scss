@@ -18,6 +18,7 @@
         justify-items: center;
 
         #nome {
+            margin-bottom: 20px;
             width: 40%;
             height: 20%;
             padding: 0.5%;
@@ -32,13 +33,31 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 25%;
+        width: 15%;
         height: 30%;
         border-radius: 5px;
         background-color: blue;
 
         a {
             color: #ffff;
+            text-decoration: none;
+            outline: none;
+        }
+    }
+
+    #botao-2 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 30%;
+        height: 30%;
+        border-radius: 5px;
+        background-color: blue;
+
+        a {
+            color: white;
+            font-weight: bold;
+            font-size: 24px;
             text-decoration: none;
             outline: none;
         }
