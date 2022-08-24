@@ -1,9 +1,10 @@
-import { useEffect } from 'react'
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import Flautista from '../../assets/Flautista.jpg'
-import RatoBebe from '../../assets/RatoBebe.jpg'
-import '../Fases.scss'
+import '../Fases.scss';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import flautista from '../../assets/flautista.png';
+import ratoBebe from '../../assets/ratoBebe.png';
+import floresta from '../../assets/floresta.png';
 
 function Fase1(props) {
     const nomeInimigo = "Rato Bebê"
@@ -115,32 +116,41 @@ function Fase1(props) {
         <div id='fase'>
             <div className="background">
                 <div className="conteudo">
+                    <div className="background-luta">
+                        <img src={floresta} />
+                    </div>
+
                     <div className='luta'>
                         <div className="personagem">
                             <div className="imagem-personagem">
-                                <img id="heroi" src={Flautista} />
+                                <img src={flautista} alt="Flautista" />
                             </div>
                         </div>
+
                         <div className="personagem">
                             <div className="imagem-personagem">
-                                <img src={RatoBebe} />
+                                <img src={ratoBebe} alt="Rato Bebê" />
                             </div>
                         </div>
                     </div>
+
                     <div to='/' className='info'>
                         <Link to='/'>Menu</Link>
                         <div className="vidas">
                             <div className="barra-de-vida"> Vida Flaustista: {vidaHeroi}</div>
                             <div className="barra-de-vida"> Vida {nomeInimigo}: {vidaRato}</div>
                         </div>
+
                         <div className="numeros">
                             <div className="caracteristica">
                                 Mana: {manaHeroi}
                             </div>
                         </div>
+
                         <div className="acoes">
                             {acoes}
                         </div>
+
                         {venceu == 1 &&
                             <div>
                                 Você venceu
