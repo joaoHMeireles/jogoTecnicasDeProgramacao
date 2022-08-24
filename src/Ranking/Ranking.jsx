@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import './Ranking.scss';
 import rank from '../assets/rank.jpg';
-import { useState } from 'react';
 
 function Ranking() {
     const lista = JSON.parse(localStorage.getItem("RANKING"))
@@ -9,7 +8,7 @@ function Ranking() {
     let ranking
     let naoTem = false
 
-    if (!lista) {
+    if (lista) {
         naoTem = true
     } else {
         listaOrdenada = lista?.sort(function (a, b) {
