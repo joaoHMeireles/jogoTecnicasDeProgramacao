@@ -2,9 +2,8 @@ import { Link } from 'react-router-dom';
 import './Ranking.scss';
 import rank from '../assets/rank.jpg';
 
-function Ranking(props) {
-    const lista = props.lista;
-    console.log(lista);
+function Ranking() {
+    const lista = JSON.parse(localStorage.getItem("RANKING"))
 
     const listaOrdenada = lista.sort(function (a, b) {
         return b.pontuacao - a.pontuacao;
