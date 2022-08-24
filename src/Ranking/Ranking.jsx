@@ -11,10 +11,10 @@ function Ranking() {
 
     const ranking = listaOrdenada.map((jogador) => {
         return (
-            <div className='linha'>
-                <div> NickName: {jogador.nome} </div>
-                <div> Pontuação: {jogador.pontuacao} </div>
-            </div>
+            <tr className='linha'>
+                <td> {jogador.nome} </td>
+                <td> {jogador.pontuacao} </td>
+            </tr>
         )
     })
 
@@ -23,8 +23,15 @@ function Ranking() {
             <div className="imagem">
                 <img src={rank}></img>
             </div>
-            <div className='rank'>
-                {ranking}
+            <div className='container-rank'>
+                <table className='rank'>
+                    <tr className='linha'>
+                        <th>NickName</th>
+                        <th>Pontuação</th>
+                    </tr>
+                    {ranking}
+                </table>
+
             </div>
             <Link to="/">Inicio</Link>
         </div>
