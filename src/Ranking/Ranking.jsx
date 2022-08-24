@@ -24,9 +24,7 @@ function Ranking() {
                 </tr>
             )
         })
-
     }
-
 
     return (
         <div id='ranking'>
