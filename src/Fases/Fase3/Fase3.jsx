@@ -135,7 +135,7 @@ function Fase3(props) {
 
                         <div className="personagem">
                             <div className="imagem-personagem">
-                                <img src={rataoArmadura} alt="Rato Bebê" />
+                                <img src={rataoArmadura} id="aumenta" alt="Rato Bebê" />
                             </div>
                         </div>
                     </div>

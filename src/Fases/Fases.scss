@@ -13,11 +13,11 @@
             flex-direction: column;
 
             .background-luta {
-                width: auto;
-                height: 70%;
                 display: flex;
                 justify-content: center;
                 align-items: flex-end;
+                width: auto;
+                height: 70%;
                 overflow: hidden;
                 position: relative;
 
@@ -28,10 +28,13 @@
             }
 
             .luta {
+                width: 20vw;
                 display: flex;
-                justify-content: center;
-                align-items: center;
+                justify-content: space-between;
+                align-items: end;
                 position: absolute;
+                bottom: 45%;
+                left: 40%;
             }
 
             .personagem {
@@ -50,6 +53,14 @@
                         height: 100%;
                     }
 
+                    #aumenta {
+                    width: 200%;
+                    }
+                    
+                    #aumenta2 {
+                        width: 200%;
+                    }
+
                     #heroi {
                         display: flex;
                         justify-content: center;
@@ -64,8 +75,8 @@
                 padding: 20px;
                 height: 30%;
                 padding: 10px;
-                background-color: gold;
-                border: 1px rgb(165, 87, 42) solid;
+                background-color: lightblue;
+                border: 1px #ffffff solid;
 
                 .vidas{
                     display: flex;
